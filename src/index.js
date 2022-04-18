@@ -8,34 +8,85 @@ import { Provider } from 'react-redux';
 let rootReducer = (prevState,action)=>{
   let newState = prevState
 
-  switch(action.type){
+  switch(action.type){ 
     case 'ADDITION':
-      alert('ADDITION');
+      //alert('ADDITION');
+      newState.operation = '+';
       break;
     case 'SUBTRACTION':
-      alert('SUBTRACTION');
+      newState.operation = '-';
+      //alert('SUBTRACTION');
       break;
     case 'MULTIPLICATION':
-      alert('MULTIPLICATION');
+      newState.operation = '*';
+      //alert('MULTIPLICATION');
       break;
     case 'DIVISION':
-      alert('DIVISION');
+      newState.operation = '/';
+      //alert('DIVISION');
       break;
     case 'RESULT':
-      alert('RESULT');
+      //alert('RESULT');
+      switch(newState.operation){
+          case '+':
+            newState.result = newState.leftValue + newState.rightValue;
+            break;
+          case '-':
+            newState.result = newState.leftValue - newState.rightValue;
+            break;
+          case '*':
+            newState.result = newState.leftValue * newState.rightValue;
+            break;
+          case '/':
+            newState.result = newState.leftValue / newState.rightValue;
+            break;
+          default:
+      }
+      console.log(newState);
       break;
     case 'CLEAR':
-      alert('CLEAR');
+      newState.result = 0;
+      newState.leftValue = '';
+      newState.operation = '';
+      newState.rightValue = '';
       break;
-
+    case 'NUMBER':
+      //alert(action.number);
+      console.log(newState);
+      if(newState.operation === ""){
+        if(newState.leftValue === ""){
+          newState.leftValue = parseInt(action.number);
+        }else{
+          //Concatinatte
+          newState.leftValue = parseInt(newState.leftValue + action.number)
+        } 
+      }else{
+        if(newState.rightValue === ""){
+          newState.rightValue = parseInt(action.number);
+        }else{
+          newState.rightValue = parseInt(newState.rightValue + action.number)
+        }
+      }
     default:
-
-
   }
-
+  //console.log(newState);
   return newState;
 }
-let storeObjecct = createStore(rootReducer,0);
+
+export const number = (n)=>{  //Action Creator
+  //alert(n);
+  return {
+    type:'NUMBER',
+    number:n
+  }
+}
+
+let storeObjecct = createStore(rootReducer,{
+  result:0,
+  leftValue:'',
+  operation:'',
+  rightValue:''
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
