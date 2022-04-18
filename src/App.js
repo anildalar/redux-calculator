@@ -1,15 +1,13 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { number } from '.';
 import './App.css';
+import { number } from './redux/actionCreator/actionCreator';
 
 function App() {
-  //
-  let state = useSelector((storeObject)=>{
-    return storeObject;
-  });
-
+  let state = useSelector((state) =>{
+    return state
+  } );
   let dispatch = useDispatch();
-
 
   return (
     <div className="App">
@@ -19,7 +17,7 @@ function App() {
 
         <div className="calculator-keys">
           
-          <button type="button" className="operator" value="+" onClick={()=>{dispatch({type:'ADDITION'})}}>+</button>
+          <button type="button"  className="operator" value="+" onClick={()=>{dispatch({type:'ADDITION'})}}>+</button>
           <button type="button" className="operator" value="-" onClick={()=>{dispatch({type:'SUBTRACTION'})}}>-</button>
           <button type="button" className="operator" value="*" onClick={()=>{dispatch({type:'MULTIPLICATION'})}}>&times;</button>
           <button type="button" className="operator" value="/" onClick={()=>{dispatch({type:'DIVISION'})}}>&divide;</button>
@@ -28,16 +26,13 @@ function App() {
           <button type="button" value="8" onClick={(e)=>{ dispatch(number(e.target.value)) }}>8</button>
           <button type="button" value="9" onClick={(e)=>{ dispatch(number(e.target.value)) }}>9</button>
 
-
           <button type="button" value="4" onClick={(e)=>{ dispatch(number(e.target.value)) }}>4</button>
           <button type="button" value="5" onClick={(e)=>{ dispatch(number(e.target.value)) }}>5</button>
           <button type="button" value="6" onClick={(e)=>{ dispatch(number(e.target.value)) }}>6</button>
 
-
           <button type="button" value="1" onClick={(e)=>{ dispatch(number(e.target.value)) }}>1</button>
           <button type="button" value="2" onClick={(e)=>{ dispatch(number(e.target.value)) }}>2</button>
           <button type="button" value="3" onClick={(e)=>{ dispatch(number(e.target.value)) }}>3</button>
-
 
           <button type="button" value="0" onClick={(e)=>{ dispatch(number(e.target.value)) }}>0</button>
           <button type="button" className="decimal" value=".">.</button>
@@ -46,7 +41,7 @@ function App() {
           <button type="button" className="equal-sign" value="=" onClick={()=>{dispatch({type:'RESULT'})}}>=</button>
 
         </div>
-        </div>
+      </div>
     </div>
   );
 }
