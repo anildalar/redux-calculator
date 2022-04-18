@@ -9,27 +9,21 @@ let rootReducer = (prevState,action)=>{
             ...prevState,
             operation: '+'
         }
-        
-        break;
     case SUBTRACTION:
         return {
             ...prevState,
             operation: '-'
         }
-        break;
     case MULTIPLICATION:
         return {
             ...prevState,
             operation: '*'
         }
-      
-        break;
     case DIVISION:
         return {
             ...prevState,
             operation: '/'
         }
-        break;
     case RESULT:
         //alert('RESULT');
         switch(prevState.operation){
@@ -38,25 +32,21 @@ let rootReducer = (prevState,action)=>{
                     ...prevState,
                     result: prevState.leftValue + prevState.rightValue
                 }
-                break;
             case '-':
                 return {
                     ...prevState,
                     result: prevState.leftValue - prevState.rightValue
                 }
-                break;
             case '*':
                 return {
                     ...prevState,
                     result: prevState.leftValue * prevState.rightValue
                 }
-                break;
             case '/':
                 return {
                     ...prevState,
                     result: prevState.leftValue / prevState.rightValue
                 }
-                break;
             default:
         }
       console.log(prevState);
@@ -68,7 +58,6 @@ let rootReducer = (prevState,action)=>{
             operation: '',
             rightValue: ''
         }
-      break;
     case NUMBER:
       //alert(action.number);
       if(prevState.operation === ""){
@@ -102,11 +91,9 @@ let rootReducer = (prevState,action)=>{
             }
         }
       }
-      
-      break;
     default:
   }
-  console.log(prevState);
+  //console.log(prevState);
   return prevState
 }
 
